@@ -1,2 +1,2 @@
 # Analisis-datos-titanic
- Analizamos los datos de titanic. Tenemos que hacer presentación de 10 min para representar
+ Este proyecto una pequeña muestra de datos del famoso naufragio del Titanic. La aplición muestra visualizaciones interactivas y análisis de diferentes aspectos relacionados con los pasajeros del Titanic, como la distribución de edades, el número de pasajeros embarcados en diferentes puertos, la relación entre el precio del billete y el puerto de embarque, y más.

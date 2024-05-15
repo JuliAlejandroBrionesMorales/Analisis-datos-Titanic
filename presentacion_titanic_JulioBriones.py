@@ -155,7 +155,7 @@ with tab2:
         with col2:
             # AHORA REPARAMOS VALORES NULOS
             # 1. REPARAMOS COLUMNA AGE (sustituimos por media)
-            media_age = df['Age'].mean()
+            media_age = df['Age'].median()
             df.fillna({'Age':media_age}, inplace=True) 
             # 2. ELIMINAMOS COLUMNA CABIN (tiene muchos valores nulos / no reparamos)
             df.drop('Cabin', axis=1, inplace=True) 
@@ -170,7 +170,7 @@ with tab2:
 
 # --------------------TAB 3 ----------------------------#
 with tab3:
-    st.title("REPRESENTACION NÚMERO DE EMBARQUES POR PUERTO")
+    st.title("REPRESENTACION NUMÉRICA DE LOS PUERTOS DE EMBARQUE")
     # COLUMAS CON FOTOS DE LOS PUERTOS
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -302,7 +302,25 @@ with tab6:
         fig.update_layout(xaxis_title='Tipo de Sexo', yaxis_title='Cantidad de pasajeros')
         # Mostramos el gráfico
         st.plotly_chart(fig)
+        personas = df['Sex'].value_counts().sum()
+        personas
+        
     with col2:
+        # Calculamos el porcentaje hombres y mujeres embarcados
+        porcentaje_sexos = df['Sex'].value_counts()/len(df)*100
+        porcentaje_sexos = porcentaje_sexos.reset_index()
+        porcentaje_sexos.columns = ['Sexos', 'Porcentaje']
+
+        # Creamos el gráfico de pastel con Plotly Express
+        fig = px.pie (porcentaje_sexos, names='Sexos', values='Porcentaje', title='Porcentaje de sexos embarcados',color_discrete_sequence=colors, 
+                      width=700, height=500)
+        # Mostramos el gráfico
+        st.plotly_chart(fig)
+    with col3: 
+        st.write ('')
+    
+    col1, col2 = st.columns(2)
+    with col1:
         # Calculamos los valores de sobrevivientes de nuestro dataframe
         porcentaje_sobrevivientes = df['Survived'].value_counts()/len(df)*100
         porcentaje_sobrevivientes = porcentaje_sobrevivientes.reset_index()
@@ -311,15 +329,17 @@ with tab6:
         porcentaje_sobrevivientes ['Sobrevivió'] = porcentaje_sobrevivientes ['Sobrevivió'].map({0: 'No Sobrevivió', 1: 'Sobrevivió'})
         # Fijamos un color para la gráfica
         colors = ['#ff6666', '#66ff99']
-        
+            
         # GRAFICO PASTEL DE LOS PORCENTAJES DE LAS PERSONAS QUE SOBREVIVIERON
         fig = px.pie(porcentaje_sobrevivientes, names = 'Sobrevivió', values='Porcentaje', title= 'PORCENTAJE DE SOBREVIVIENTES',
-                     color_discrete_sequence= colors, width=700, height=500)
+                        color_discrete_sequence= colors, width=700, height=500)
         st.plotly_chart(fig)
-    with col3: 
-        st.write ('')
     
+    with col2:
+        numero_sobrevivientes = df['Survived'].value_counts()
+        numero_sobrevivientes
     
+        
     # Ahora vamos a crear 3 graficos, con los sobrevivientes en función del sexo y la clase
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -384,12 +404,15 @@ with tab6:
             color_discrete_sequence=colors, width=600, height=400)
         # Mostramos el gráfico
         st.plotly_chart(fig)  
-     
+        
+
     # CALCULAMOS LOS PORCENTAJES DE SUPERVIVENCIA POR EDAD Y SEXO
-    sobrevivir_edad = df.groupby(['Age', 'Sex'])['Survived'].value_counts(normalize=True) * 100
-    sobrevivir_edad = sobrevivir_edad.rename('Porcentaje').reset_index()
-     # Fijamos un color para la gráfica
-    colors = colors = ['#ff7f0e', '#6dafe3']
+    sobrevivir_edad = df.groupby(['Age', 'Sex', 'Pclass', 'Survived'])['Pclass'].count().reset_index(name='count')
+    sobrevivir_edad['Porcentaje'] = sobrevivir_edad.groupby(['Age', 'Sex', 'Pclass'])['count'].transform(lambda x: x / x.sum() * 100)
+
+
+    # Fijamos un color para la gráfica
+    colors = ['#ff7f0e', '#6dafe3']
 
     # Creamos un gráfico de dispersión (scatter plot)
     fig = px.scatter(sobrevivir_edad, 
@@ -400,10 +423,12 @@ with tab6:
                     title='PORCENTAJE DE SUPERVIVENCIA POR EDAD Y SEXO',
                     labels={'Age': 'Edad', 'Porcentaje': 'Porcentaje de supervivencia'},
                     color_discrete_sequence=colors, width=1200,
-                    height=750, size='Age', size_max=15)
+                    height=750, size='Age', size_max=15,
+                    hover_data={'Age': True, 'Sex': True, 'Survived': True, 'Pclass': True})
 
     # Mostrar el gráfico
     st.plotly_chart(fig)
+
         
 
 

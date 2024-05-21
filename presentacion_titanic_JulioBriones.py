@@ -8,11 +8,10 @@ import plotly.express as px
 import seaborn as sns
 import streamlit as st
 
-
 # --------------------CONFIGURACIÓN DE LA PÁGINA----------------------------#
 # layout="centered" or "wide".
 st.set_page_config(page_title='Proyecto 1: Titanic', layout='wide', page_icon='⛴️')
-logo = 'https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/imagen_titanic_2.jpeg'
+logo = 'img/imagen_titanic_2.jpeg'
 
 
 
@@ -20,7 +19,7 @@ logo = 'https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/bl
 
 col1, col2, col3 = st.columns(3)
 with col1 :
-    st.image(logo, width=102)
+    st.image(logo, use_column_width=True)
 with col2 :
     st.write('') 
 with col3 :
@@ -33,25 +32,25 @@ st.title('LA TRAVESIA DEL TITANIC')
 st.sidebar.image(logo, width=100)
 st.sidebar.title('CURIOSIDADES')
 # Imagen 1: Curiosidad 1
-st.sidebar.image('https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/imagen_titanic_3.jpg', caption='Presupuesto de Titanic')
+st.sidebar.image('img/imagen_titanic_3.jpg', caption='Presupuesto de Titanic')
 
 # Texto relacionado con la curiosidad 1
 st.sidebar.write('La película fue dirigida por James Cameron y fue más costosa más dinero que construir el barco original (200 millones $)')
 
 # Imagen 2: Curiosidad 2
-st.sidebar.image('https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/imagen_titanic_4.jpg', caption='Ubicacion actual')
+st.sidebar.image('img/imagen_titanic_4.jpg', caption='Ubicacion actual')
 
 # Texto relacionado con la curiosidad 2
 st.sidebar.write('Actualmente el Titanic se encuentra a 4000 metros de profundidad en el Oceáno Atlántico.')
 
 # Imagen 3: Curiosidad 3
-st.sidebar.image('https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/imagen_titanic_5.jpg', caption='Botes Salvavidas')
+st.sidebar.image('img/imagen_titanic_5.jpg', caption='Botes Salvavidas')
 
 # Texto relacionado con la curiosidad 3
 st.sidebar.write('Originalmente iba a contar con 64 salvavidas, pero finalmente solo conto con 20 botes.')
 
 # Imagen 4: Curiosidad 4
-st.sidebar.image('https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/imagen_titanic_6.jpg', caption='Número de muertes')
+st.sidebar.image('img/imagen_titanic_6.jpg', caption='Número de muertes')
 
 # Texto relacionado con la curiosidad 3
 st.sidebar.write('Según los registros, 1496 personas murieron en el hundimiento del Titanic. De los 2,208 pasajeros a bordo, solo 712 pudieron escapar en los botes salvavidas (32.2%).')
@@ -90,22 +89,22 @@ with tab0:
     col1, col2 = st.columns(2)
     with col1:
         st.write('1)')
-        st.image('https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/imagen_titanic_8.jpg',width=width)
+        st.image('img/imagen_titanic_8.jpg',width=width)
         st.write('Contruido en Irlanda del Norte')
     with col2:
         st.write('2)')
-        st.image('https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/imagen_titanic_9.jpg',width=width)
+        st.image('img/imagen_titanic_9.jpg',width=width)
         st.write('Southampton - 10 de abril de 1912')
 
     col1, col2 = st.columns(2)
     with col1:
         st.write('3)')
-        st.image('https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/imagen_titanic_10.jpg',width=width)
+        st.image('img/imagen_titanic_10.jpg',width=width)
         st.write('J.Bruce Ismay - White Star Line')
         
     with col2:
         st.write('4)')
-        st.image('https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/imagen_titanic_11.jpg',width=width)
+        st.image('img/imagen_titanic_11.jpg',width=width)
         st.write('20 botes salvavidas')
 
 
@@ -116,11 +115,11 @@ with tab1:
     st.dataframe(df)
     col1, col2, col3, col4 = st.columns(4)
     with col1 :
-        st.write('SibSp: número de hermanos/conyujes abordo del Titanic', text_size='small')
+        st.write('SibSp: número de hermanos/conyujes abordo del Titanic')
     with col2 :
-        st.write('Parch: número de padres / hijos a bordo del Titanic.', text_size='small') 
+        st.write('Parch: número de padres / hijos a bordo del Titanic.') 
     with col3 :
-        st.write('Fare: tarifa pagada por el pasajero', text_size='small') 
+        st.write('Fare: tarifa pagada por el pasajero') 
     with col4:
         st.write('') 
 
@@ -174,13 +173,13 @@ with tab3:
     col1, col2, col3 = st.columns(3)
     with col1:
         st.write('S -> "Southampton"')
-        st.image ('https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/puerto_southampon_14.jpg')
+        st.image ('img/puerto_southampon_14.jpg')
     with col2:
         st.write('C -> "Cherbour"')
-        st.image ('https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/puerto_cherbourg_12.jpg')
+        st.image ('img/puerto_cherbourg_12.jpg')
     with col3:
         st.write('Q -> "Queenstown"')
-        st.image ('https://github.com/JuliAlejandroBrionesMorales/Analisis-datos-Titanic/blob/main/img/puerto_Queenstow_Cobh_13.jpg')
+        st.image ('img/puerto_Queenstow_Cobh_13.jpg')
     st.write('')
     
     # COLUMNAS CON NUMEROS Y PORCENTAJES DE EMBARQUES POR PUERTOS

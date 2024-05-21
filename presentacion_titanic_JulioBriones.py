@@ -58,7 +58,7 @@ st.sidebar.write('Según los registros, 1496 personas murieron en el hundimiento
 
 
 # --------------------COSAS QUE VAMOS A USAR EN TODA LA APP----------------------------#
-df = pd.read_csv(r'/Users/juliobrionesmorales/Documents/GitHub/Analisis-datos-titanic/data/titanic.csv')
+df = pd.read_csv(r'data/titanic.csv')
 if "Unnamed: 0" in df:
     df = df.drop(columns=["Unnamed: 0"])  # Eliminamos la columna Unnamed: 0
 else:
